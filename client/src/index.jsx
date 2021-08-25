@@ -74,7 +74,7 @@ class App extends React.Component {
           </div>
         </div>
         <Overview starValue={this.state.starValue} productId={this.state.id} reviewsNumber={this.state.reviewLength} />
-        <RelatedLists productId={this.state.id} starValue={this.state.starValue} selectProduct={this.selectProduct} />
+        <RelatedLists productId={this.state.id} selectProduct={this.selectProduct} />
         <QuestionsAnswersWithClickTracking id={this.state.id} />
         <section id='Reviews'>
          <Reviews getReviewLength={this.getReviewLength.bind(this)} getReviews={getReviews} getMeta={getMeta} setStars={this.setStars.bind(this)} starsValue={this.state.starValue} product_id={this.state.id}/>

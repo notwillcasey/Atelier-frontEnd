@@ -43,7 +43,7 @@ class YourOutfit extends React.Component {
       removeFromUserOutfits={removeFromUserOutfits}
       selectProduct={selectProduct}
       productsToCompare={productsToCompare}
-      starValue={starValue}
+      rawRatings={outfit.ratings}
       type={type}
       />;
     });

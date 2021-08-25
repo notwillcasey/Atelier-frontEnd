@@ -15,7 +15,6 @@ class RelatedProduct extends React.Component {
       addToUserOutfits,
       selectProduct,
       masterProductDetails,
-      starValue,
       type
     } = this.props;
 
@@ -24,6 +23,7 @@ class RelatedProduct extends React.Component {
       if (!photo) {
         photo = '';
       }
+      console.log('PRODUCT RATINGS ======== ', product.ratings);
 
       const thisProductDetails = product;
 
@@ -43,7 +43,7 @@ class RelatedProduct extends React.Component {
         productsToCompare={productsToCompare}
         addToUserOutfits={addToUserOutfits}
         selectProduct={selectProduct}
-        starValue={starValue}
+        rawRatings={product.ratings}
         type={type}
         />;
     });
