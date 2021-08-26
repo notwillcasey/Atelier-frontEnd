@@ -16,9 +16,9 @@ const getRelatedProducts = (currentProductId) => {
   });
 
   // need to retrievee for category, name, slogan, price
-  const relatedProductDetails = relatedProductIds.then(currentProductIds => {
-    currentProductIds.data.push(currentProductId);
-    return Promise.all(currentProductIds.data.map(id => {
+  const relatedProductDetails = relatedProductIds.then(relatedProducts => {
+    relatedProducts.data.push(currentProductId);
+    return Promise.all(relatedProducts.data.map(id => {
       return axios.get(`${apiURL}products/${id}`, {
         headers: {
           Authorization: apiToken
@@ -51,42 +51,43 @@ const getRelatedProducts = (currentProductId) => {
         }, {});
       return filtered;
     });
-
-    // console.log('IMAGE DATA ', imageData);
     return imageData;
   });
 
-  // console.log('PRODUCT IMAGES ', productImages);
-
-  return Promise.all([relatedProductDetails, productDetailsWithImages]);
-};
-
-const combineDetailsAndImages = (productDetails, productImages) => {
-  // const needed = ['id', 'name', 'slogan', 'default_price', 'category'];
-  const productOverview = productDetails.map(product => {
-    const raw = product.data;
-    const filtered = Object.keys(raw)
-      // .filter(key => needed.includes(key))
-      .reduce((obj, key) => {
-        obj[key] = raw[key];
-        return obj;
-      }, {});
-    return filtered;
+  const productRatings = productDetailsWithImages.then((products) => {
+    return Promise.all(products.map(product => {
+      return axios.get(`${apiURL}reviews/meta?product_id=${product.id}`, {
+        headers: {
+          Authorization: apiToken
+        }
+      });
+    }));
   });
 
-  const combinedData = productOverview.map((product, i) => {
+  return Promise.all([relatedProductDetails, productDetailsWithImages, productRatings]);
+};
+
+const combineDetailsImagesRatings = (productDetails, productImages, productRatings) => {
+  const ratings = productRatings.map((product) => {
+    const ratingsObj = {};
+    ratingsObj.ratings = product.data.ratings;
+    return ratingsObj;
+  });
+
+  const combinedData = productDetails.map((product, i) => {
+    const productData = product.data;
     const combine = {
       ...productImages[i],
-      ...product
+      ...ratings[i],
+      ...productData
     };
     return combine;
   });
 
-  // console.log('product images ============== ', combinedData);
   return combinedData;
 };
 
 module.exports = {
   getRelatedProducts: getRelatedProducts,
-  combineDetailsAndImages: combineDetailsAndImages
+  combineDetailsImagesRatings: combineDetailsImagesRatings
 };

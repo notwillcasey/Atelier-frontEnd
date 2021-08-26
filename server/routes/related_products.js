@@ -1,14 +1,14 @@
 // const axios = require('axios');
 // const keys = require('../config.js');
 const router = require('express').Router();
-const { getRelatedProducts, combineDetailsAndImages } = require('../helpers/related_products_helpers.js');
+const { getRelatedProducts, combineDetailsImagesRatings } = require('../helpers/related_products_helpers.js');
 
 router.get('/related-products', (req, res) => {
   console.log('RELATED PRODUCTS SERVER ============ ');
   const masterProductId = req.query.product_id;
   getRelatedProducts(masterProductId)
-    .then(([productDetails, productImages]) => {
-      return combineDetailsAndImages(productDetails, productImages);
+    .then(([productDetails, productImages, productRatings]) => {
+      return combineDetailsImagesRatings(productDetails, productImages, productRatings);
     })
     .then((results) => {
       res.send(results);
