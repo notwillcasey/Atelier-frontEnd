@@ -34,6 +34,7 @@ class Ratings extends React.Component {
   }
 
   getTotal () {
+    console.log('this.propsssssss', this.props);
     let result = 0;
     for (const keys in this.props.ratingsBreakdown) {
       result += parseInt(this.props.ratingsBreakdown[keys]);
@@ -105,7 +106,7 @@ class Ratings extends React.Component {
             return '';
           }
           return <div key={index}>
-            {characteristics}
+            <h4>{characteristics}</h4>
             <input type='range' min='1' max='5' step='any' value={value.value || 3} disabled></input>
             <RatingsDescription description={characteristics}/>
           </div>;

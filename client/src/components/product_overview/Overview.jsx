@@ -9,14 +9,24 @@ class Overview extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      product: {}, // main thing that comes from API
-      styles: [], // main thing that comes from API
+      product: {},
+      styles: [],
       images: [],
       currentImage: '',
       currentStyle: {},
       expandedView: false,
       expandedCarouselClicked: false
     };
+
+    this.handleThumbnailClick = this.handleThumbnailClick.bind(this);
+    this.handleChangeStyle = this.handleChangeStyle.bind(this);
+    this.handleBackArrowClick = this.handleBackArrowClick.bind(this);
+    this.handleForwardArrowClick = this.handleForwardArrowClick.bind(this);
+    this.handleExpand = this.handleExpand.bind(this);
+    this.handleShrink = this.handleShrink.bind(this);
+    this.handleExpandedCarouselClick = this.handleExpandedCarouselClick.bind(this);
+    this.handleZoomOut = this.handleZoomOut.bind(this);
+    this.addToBag = this.addToBag.bind(this);
   }
 
   fetchProductStyles (id) {
@@ -46,6 +56,7 @@ class Overview extends React.Component {
       data: { productId: id },
       success: (data) => {
         this.setState({ product: data });
+        this.props.getProductName(data.name);
       },
       error: (err) => {
         console.log('error in back to client product', err);
@@ -144,9 +155,9 @@ class Overview extends React.Component {
 
         <div id="overview">
           <div id="carouselProductInfo">
-            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} currentSetOfThumbnails={this.state.currentSetOfThumbnails} thumbnailClick={this.handleThumbnailClick.bind(this)} forwardArrowClick={this.handleForwardArrowClick.bind(this)} backArrowClick={this.handleBackArrowClick.bind(this)} expand={this.handleExpand.bind(this)} expandedView={this.state.expandedView} expandedCarouselClicked={this.state.expandedCarouselClicked} expandedCarouselClick={this.handleExpandedCarouselClick.bind(this)} zoomOut={this.handleZoomOut.bind(this)} shrink={this.handleShrink.bind(this)} />
+            <Carousel productId={this.props.productId} images={this.state.images} currentImage={this.state.currentImage} styles={this.state.styles} currentStyle={this.state.currentStyle} currentSetOfThumbnails={this.state.currentSetOfThumbnails} thumbnailClick={this.handleThumbnailClick} forwardArrowClick={this.handleForwardArrowClick} backArrowClick={this.handleBackArrowClick} expand={this.handleExpand} expandedView={this.state.expandedView} expandedCarouselClicked={this.state.expandedCarouselClicked} expandedCarouselClick={this.handleExpandedCarouselClick} zoomOut={this.handleZoomOut} shrink={this.handleShrink} />
 
-            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle.bind(this)} addToBag={this.addToBag.bind(this)} starValue={this.props.starValue} expand={this.handleExpand.bind(this)} expandedView={this.state.expandedView} reviewsNumber={this.props.reviewsNumber} />
+            <ProductInfo product={this.state.product} styles={this.state.styles} currentStyle={this.state.currentStyle} images={this.state.images} changeStyle={this.handleChangeStyle} addToBag={this.addToBag} starValue={this.props.starValue} expand={this.handleExpand} expandedView={this.state.expandedView} reviewsNumber={this.props.reviewsNumber} />
           </div>
 
           <div >

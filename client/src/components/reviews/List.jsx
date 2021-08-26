@@ -4,6 +4,7 @@ import React from 'react';
 import increaseHelp from '../../helpers/reviews/helpfulness.js';
 import StarsGlobal from './StarsGlobal.jsx';
 import axios from 'axios';
+import interactions from '../../helpers/reviews/interactions.js';
 /* eslint-disable react/prop-types */
 
 class List extends React.Component {
@@ -37,6 +38,7 @@ class List extends React.Component {
       });
       this.props.reSortList();
     }
+    interactions('button');
   }
 
   expandImage (e) {
@@ -45,18 +47,21 @@ class List extends React.Component {
       imageClick: !this.state.imageClick,
       src: e.target.src
     });
+    interactions('img');
   }
 
   closeImage () {
     this.setState({
       imageClick: false
     });
+    interactions('img');
   }
 
   showMoreOrLess () {
     this.setState({
       notClicked: !this.state.notClicked
     });
+    interactions('button');
   }
 
   reportReview (review_id) {
@@ -65,6 +70,7 @@ class List extends React.Component {
         wasReported: true
       })).catch((err) => console.log('failed to report'));
     }
+    interactions('button');
   }
 
   render () {

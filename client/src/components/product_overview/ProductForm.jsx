@@ -2,7 +2,6 @@
 import React from 'react';
 import { FormControl, Select, MenuItem } from '@material-ui/core';
 import { MdStarBorder, MdStar } from 'react-icons/md';
-// import { makeStyles, withStyles } from '@material-ui/core/styles';
 
 class ProductForm extends React.Component {
   constructor (props) {
@@ -14,6 +13,12 @@ class ProductForm extends React.Component {
       open: false,
       addToBagClicked: false
     };
+
+    this.handleOpen = this.handleOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+    this.handleSizeChange = this.handleSizeChange.bind(this);
+    this.handleAmountChange = this.handleAmountChange.bind(this);
+    this.handleStarClick = this.handleStarClick.bind(this);
   }
 
   handleOpen () {
@@ -80,7 +85,7 @@ class ProductForm extends React.Component {
     };
 
     return (
-      <div>
+      <div id="form">
 
         <div className="size_amount">
 
@@ -90,13 +95,13 @@ class ProductForm extends React.Component {
             this.props.currentStyle.skus
               ? (Object.keys(this.props.currentStyle.skus)[0] !== 'null'
                   ? <FormControl style={{ minWidth: 150 }}>
-                  <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size} onOpen={this.handleOpen.bind(this)} onClose={this.handleClose.bind(this)} open={this.state.open}>
+                  <Select className="select select_size" onChange={this.handleSizeChange} displayEmpty value={this.state.size} onOpen={this.handleOpen} onClose={this.handleClose} open={this.state.open}>
                     <MenuItem value="" disabled>SELECT SIZE</MenuItem>
                     {arrayOfSkus.map((element, key) => (<MenuItem key={key} value={`"${element.size}"`}>{element.size}</MenuItem>))}
                   </Select>
                 </FormControl >
                   : <FormControl style={{ minWidth: 150 }}>
-                  <Select className="select select_size" onChange={this.handleSizeChange.bind(this)} displayEmpty value={this.state.size}>
+                  <Select className="select select_size" onChange={this.handleSizeChange} displayEmpty value={this.state.size}>
                     <MenuItem value="" disabled>OUT OF STOCK</MenuItem>
                   </Select>
                 </FormControl>
@@ -107,11 +112,11 @@ class ProductForm extends React.Component {
           {
             this.state.size === ''
               ? <FormControl disabled style={{ minWidth: 70 }}>
-                <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount} displayEmpty renderValue={() => '-'}>
+                <Select className="select select_amount" onChange={this.handleAmountChange} value={this.state.amount} displayEmpty renderValue={() => '-'}>
                 </Select>
               </FormControl>
               : <FormControl style={{ minWidth: 70 }}>
-                <Select className="select select_amount" onChange={this.handleAmountChange.bind(this)} value={this.state.amount} displayEmpty renderValue={() => (this.state.amount === '' ? 1 : this.state.amount.substring(1, this.state.amount.length - 1))}>
+                <Select className="select select_amount" onChange={this.handleAmountChange} value={this.state.amount} displayEmpty renderValue={() => (this.state.amount === '' ? 1 : this.state.amount.substring(1, this.state.amount.length - 1))}>
                   {findRangeAccordingToSelectedSize(this.state.size) ? findRangeAccordingToSelectedSize(this.state.size).map((quantity, key) => (<MenuItem key={key} value={`"${quantity}"`}>{quantity}</MenuItem>)) : null}
                 </Select>
               </FormControl>
@@ -129,7 +134,7 @@ class ProductForm extends React.Component {
               : null
           }
 
-          <div className="star" onClick={this.handleStarClick.bind(this)}>
+          <div className="star" onClick={this.handleStarClick}>
             {this.state.starClicked ? <MdStar className="star_clicked" /> : <MdStarBorder />}
           </div>
 

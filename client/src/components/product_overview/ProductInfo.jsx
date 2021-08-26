@@ -57,7 +57,7 @@ class ProductInfo extends React.Component {
             {this.props.currentStyle.sale_price !== null ? <div><p className="sale_price">{this.props.currentStyle.sale_price}</p> <p className="original_price">{this.props.currentStyle.original_price}</p></div> : this.props.currentStyle.original_price }
           </div>
           <div className="product_style info">
-            <b>STYLE{' > '}</b>{this.props.currentStyle.name}
+            <b>STYLE&emsp;{'>'}&emsp;</b>{this.props.currentStyle.name}
           </div>
           <div className="product_styles_thumbnails info">
             {this.props.images[0]

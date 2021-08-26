@@ -51,8 +51,23 @@ const putReport = (reviewID) => {
   });
 };
 
+const postInteraction = (element) => {
+  const time = new Date();
+  console.log('date', time);
+  return axios.post('https://app-hrsei-api.herokuapp.com/api/fec2/hr-rpp/interactions', {
+    element: element,
+    widget: 'Rating & Reviews',
+    time: time
+  }, {
+    headers: {
+      Authorization: apiToken
+    }
+  }).then((res) => console.log(res)).catch((err) => console.log(err));
+};
+
 module.exports.getReviews = getReviews;
 module.exports.getMeta = getMeta;
 module.exports.putHelp = putHelp;
 module.exports.postReview = postReview;
 module.exports.putReport = putReport;
+module.exports.postInteraction = postInteraction;

@@ -1,8 +1,8 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { MdArrowForward, MdArrowBack, MdFullscreen, MdFullscreenExit } from 'react-icons/md';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+import ImageList from '@material-ui/core/List';
+import ImageListItem from '@material-ui/core/ListItem';
 import Zoom from 'react-img-zoom';
 
 class Carousel extends React.Component {
@@ -55,14 +55,13 @@ class Carousel extends React.Component {
         : <div className="carousel">
 
         <div className="carousel_container" style={{ backgroundImage: `url(${this.props.currentImage})` }} onClick={(e) => { e.stopPropagation(); this.props.expand(); }} >
-          <List className="thumbnails_container" style={{ maxHeight: 450, overflow: 'scroll' }}>
+          <ImageList style={{ maxHeight: 500, overflow: 'auto' }} className="thumbnails_container">
             {this.props.currentStyle.photos
               ? this.props.currentStyle.photos.map((photo, key) => {
-                return (<ListItem style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ (e) => { e.stopPropagation(); this.props.thumbnailClick(photo.url); }}></ListItem>);
+                return (<ImageListItem style={{ backgroundImage: `url(${photo.url})` }} className= {`${photo.url === this.props.currentImage ? 'selectedd' : ''} carousel_thumbnail_image`} key={key} onClick={ (e) => { e.stopPropagation(); this.props.thumbnailClick(photo.url); }}></ImageListItem>);
               })
               : null }
-          </List>
-          {/* {this.props.currentStyle.photos ? (this.props.currentStyle.photos.length > 7 ? <MdArrowDropDown className="drop_down" onClick={() => this.props.handleDropDownClick()} /> : null) : null } */}
+          </ImageList>
 
           <div className="arrows">
             <div className="arrows_container">

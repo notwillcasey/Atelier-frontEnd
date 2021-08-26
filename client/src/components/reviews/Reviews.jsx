@@ -3,6 +3,7 @@ import ListView from './ListView.jsx';
 import Ratings from './Ratings.jsx';
 import AddReview from './AddReview.jsx';
 import debounce from 'lodash/debounce';
+import interactions from '../../helpers/reviews/interactions.js';
 /* eslint-disable react/prop-types */
 class Reviews extends React.Component {
   constructor (props) {
@@ -22,6 +23,7 @@ class Reviews extends React.Component {
   }
 
   sortList (event, sorting) {
+    interactions('select');
     let sorted;
     let sortBy = '';
     const sort = sorting || event.target.value;
@@ -67,6 +69,7 @@ class Reviews extends React.Component {
     this.setState({
       filterRatings: []
     });
+    interactions('a')
   }
 
   filterRatings (rating) {
@@ -86,12 +89,20 @@ class Reviews extends React.Component {
     this.setState({
       filterRatings: filterRatings
     }, () => console.log(this.state.filterRatings));
+    interactions('label');
   }
 
   addReview () {
     this.setState({
       addReview: !this.state.addReview
-    });
+    }, () => {
+      if(this.state.addReview === true) {
+      interactions('button')
+    }else {
+      interactions('span')
+    }
+  });
+
   }
 
   newReviewAdded () {
@@ -104,6 +115,7 @@ class Reviews extends React.Component {
     this.setState({
       filterdSearch: text.toLowerCase()
     })
+    interactions('input')
   }, 1000)
 
   componentDidMount () {
@@ -212,9 +224,13 @@ class Reviews extends React.Component {
   render () {
     return (
         <div className='Reviews'>
+          <h3>Ratings &#38; Reviews</h3>
+          <div className='reviewFlex'>
+
           {this.state.reviewList.length > 0 && (<Ratings filterRatings={this.filterRatings.bind(this)} ratingsBreakdown={this.state.ratingsBreakdown} removeFilterRatings={this.removeFilterRatings.bind(this)} filtered={this.state.filterRatings} starValue={this.props.starsValue} characteristics={this.state.characteristics} recommended={this.state.recommended}/>)}
         <ListView filterdSearch={this.state.filterdSearch} filterSearch={this.filterSearch.bind(this)} filterRatings={this.state.filterRatings} reviewList={this.state.reviewList || []} sortBy={this.state.sortBy} sortList={this.sortList.bind(this)} addReview={this.addReview.bind(this)} />
         {this.state.addReview && <AddReview addReview={this.addReview.bind(this)} getProductDetails={this.getProductDetails.bind(this)} product_id={this.props.product_id} characteristics={this.state.characteristics}/>}
+          </div>
         </div>
     );
   }

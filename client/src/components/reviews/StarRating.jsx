@@ -13,14 +13,13 @@ class StarRating extends React.Component {
   render () {
     return (
     <div className='ReviewStars'>
-      <h2>Rating</h2>
       <Rating onChange={(e, newValue) => {
         this.props.rating(newValue);
         this.setState({
           value: newValue
         });
       }} className='reviewStarContainer' name='fiveRating' defaultValue={0} />
-      <h3 >{this.state.value === 1
+      <h4 >{this.state.value === 1
         ? 'Poor'
         : this.state.value === 2
           ? 'Fair'
@@ -30,7 +29,7 @@ class StarRating extends React.Component {
               ? 'Good'
               : this.state.value === 5
                 ? 'Great'
-                : null}</h3>
+                : null}</h4>
     </div>
     );
   }

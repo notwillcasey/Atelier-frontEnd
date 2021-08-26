@@ -1,20 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
-.reviewResponse {
-  background-color: gray;
+
+.reviewResponse p{
+  background-color: rgb(224 223 223);
   margin-bottom: 5px;
+  padding: 2%;
 }
 
 .reviewTile {
   display: flex;
   flex-direction: column;
 }
-/* .reviewTitle h1{
-  font-family: 'Recursive', sans-serif;
+.reviewTitle h1{
+  font-family: 'Roboto', sans-serif;
   font-size: 1.3em;
   font-weight: 500;
   color: rgb(71, 66, 66);
   margin-bottom: 5px;
-} */
+}
 .reviewHelpful span {
   text-decoration: underline;
 }
@@ -22,7 +23,7 @@
   margin-bottom: 5px;
 }
 .reviewList {
-  width: 45vw;
+  /* width: 45vw; */
   max-height: 100%;
   overflow-y: scroll;
 }
@@ -53,8 +54,8 @@
 } */
 .reviewBody {
   font-size: 80%;
-  margin-top: 2%;
-  margin-bottom: 3%;
+  margin-top: 0.6%;
+  margin-bottom: 0.6%;
   font-family: 'Roboto', sans-serif;
   color: rgb(59, 56, 56);
 }
@@ -64,9 +65,10 @@
 }
 
 .Reviews {
-  width: 75vw;
+  width: 80vw;
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  flex-direction: column;
 }
 
 .reviewRatings {
@@ -154,9 +156,13 @@ input[type='radio'] {
   width: 10px;
   margin-left: 2%;
 }
+
 .radioReviews {
-  justify-content: space-around;
+  justify-content: space-between;
   display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2vh;
+  margin-top: 0.2vh;
 }
 
 .reviewRadio {
@@ -175,9 +181,14 @@ input[type='radio'] {
 }
 
 .addReviewBody textarea {
-  max-width: fit-content;
+  max-width: 100%;
   max-height: 15vh;
-  min-width: fit-content;
+  min-width: 100%;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+}
+.addReviewBody {
+  margin-bottom: 2vh;
 }
 
 .reviewImage {
@@ -209,7 +220,7 @@ input[type='radio'] {
   min-height: 5vh;
   display: flex;
   align-items: center;
-
+  margin-bottom: 2vh;
 }
 .reviewFileUpload input {
   height: auto;
@@ -217,29 +228,29 @@ input[type='radio'] {
 
 
 .reviewStarContainer {
-  margin-right: 0.1%;
-  margin-left: 0.5%;
+  margin-right: 0.2%;
+  /* margin-left: 0.5%; */
 }
 .ReviewStars {
   display: flex;
-  width: 100vw;
-  align-items: center;
+  margin-bottom: 2vh;
 }
 
 .reviewSpace {
-  margin-left: 5%;
+  /* margin-left: 5%; */
 }
 
 #Reviews {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 meter {
   width: 65%;
-  margin-left: 5%;
-  margin-right: 2%;
+  margin-left: auto;
+  margin-right: 5%;
 }
 
 meter::-webkit-meter-bar {
@@ -258,6 +269,7 @@ meter::-webkit-meter-bar {
 .RatingsBreakdowns {
   display: flex;
   justify-content: space-between;
+  font-size: 0.85em;
 }
 
 .reviewReport {
@@ -268,10 +280,69 @@ meter::-webkit-meter-bar {
 }
 
 .ReviewContain {
+  width: 70%;
   max-height: 50vh;
+  margin-left: 3%;
 }
 
 .reviewContainerTitle {
   display: flex;
   align-items: center;
+}
+
+.reviewForm {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  padding: 5%;
+  height: 100%;
+  width: 100%;
+}
+
+.reviewText {
+  width: 100%;
+  height: 5vh;
+  margin-top: 0.2vh;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+}
+.reviewRecommendation {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2vh;
+}
+#no, #yes {
+  margin-left: 0.2%;
+  margin-right: 0.5%;
+}
+
+.ReviewTitle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.addReviewSummary, .reviewNickName, .reviewEmail {
+  margin-bottom: 2vh;
+}
+
+.reviewSubmit {
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.reviewClose {
+  text-decoration: underline;
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+}
+
+.reviewFlex {
+  display: flex;
+  justify-content: space-between;
 }
