@@ -56,14 +56,6 @@ If the review list becomes to long the list becomes scrollable and makes it less
 For the rating breakdown, the user can see how each rating is rated and how many users have rated that product. The user can also see the many attributes that a product may have such as width, size, comfort and more.
 
 
-## Installation
-- Clone to local machine
-- Create .env file from example.env
-- Run NPM install to install all necessary dependencies
-- Run NPM start to transpile code into bundle.js file
-- Run NPM run server to run express server locally
-- To view in the browser, go to localhost:4000 in your broswer of choice
-
 
 
 
